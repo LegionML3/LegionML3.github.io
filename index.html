@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Profile</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+            background-color: #fff;
+            max-width: 600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* Header with back arrow and menu */
+        .profile-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #efefef;
+        }
+
+        .back-arrow {
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .menu-icon {
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        /* Profile info section */
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            padding: 16px;
+            gap: 16px;
+        }
+
+        /* Profile picture and stats on same row */
+        .profile-header-content {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        /* Profile picture */
+        .profile-picture {
+            flex-shrink: 0;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            border: 2px solid #dbdbdb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8a8a8a;
+            overflow: hidden;
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        /* Stats section */
+        .profile-stats {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+            flex: 1;
+            justify-content: space-around;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #8a8a8a;
+        }
+
+        /* Username placeholder */
+        .username {
+            font-size: 16px;
+            font-weight: 600;
+            color: #000;
+        }
+
+        /* Bio section */
+        .bio-section {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .bio-text {
+            font-size: 14px;
+            color: #000;
+            line-height: 1.5;
+        }
+
+        /* Action buttons section */
+        .profile-actions {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+        }
+
+        .message-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: 1px solid #dbdbdb;
+            background-color: #fff;
+            color: #000;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .message-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .follow-btn {
+            padding: 10px 16px;
+            border: 1px solid #dbdbdb;
+            background-color: #fff;
+            color: #000;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s ease;
+            min-width: 50px;
+        }
+
+        .follow-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        .dropdown-btn {
+            padding: 10px 16px;
+            border: 1px solid #dbdbdb;
+            background-color: #fff;
+            color: #000;
+            font-size: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-width: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dropdown-btn:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Followed by section */
+        .followed-by-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .followed-by-text {
+            font-size: 12px;
+            color: #8a8a8a;
+        }
+
+        .followed-by-avatars {
+            display: flex;
+            gap: 6px;
+        }
+
+        .small-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            border: 1px solid #dbdbdb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8a8a8a;
+            font-size: 12px;
+        }
+
+        /* Navigation Bar */
+        .nav-tabs {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 12px 0;
+            border-top: 1px solid #efefef;
+            border-bottom: 1px solid #efefef;
+            margin-top: 16px;
+        }
+
+        .nav-tab {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 12px 24px;
+            font-size: 20px;
+            color: #8a8a8a;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            position: relative;
+        }
+
+        .nav-tab:hover {
+            color: #000;
+        }
+
+        .nav-tab.active {
+            color: #000;
+            border-bottom-color: #000;
+        }
+
+        /* Posts Grid */
+        .posts-container {
+            padding: 0;
+            margin-top: 0;
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background-color: #f0f0f0;
+            padding: 2px;
+        }
+
+        .post-item {
+            aspect-ratio: 1;
+            background-color: #e8e8e8;
+            border-radius: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-item:hover {
+            opacity: 0.8;
+        }
+
+        .post-item i {
+            font-size: 40px;
+            color: #c8c8c8;
+        }
+
+        .post-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Responsive - Mobile First */
+        @media (max-width: 480px) {
+            body {
+                max-width: 100%;
+            }
+
+            .profile-info {
+                padding: 12px 16px;
+                gap: 12px;
+            }
+
+            .profile-avatar {
+                width: 90px;
+                height: 90px;
+            }
+
+            .profile-stats {
+                gap: 16px;
+            }
+
+            .stat-number {
+                font-size: 20px;
+            }
+
+            .stat-label {
+                font-size: 11px;
+            }
+
+            .profile-actions {
+                gap: 8px;
+                padding: 0;
+            }
+
+            .message-btn,
+            .follow-btn,
+            .dropdown-btn {
+                padding: 9px 12px;
+                font-size: 13px;
+            }
+
+            .nav-tab {
+                padding: 10px 16px;
+                font-size: 18px;
+            }
+
+            .posts-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1px;
+                padding: 1px;
+            }
+
+            .post-item i {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with back arrow and menu -->
+    <div class="profile-header-top">
+        <div class="back-arrow">
+            <i class="fas fa-chevron-left"></i>
+        </div>
+        <div class="app-title">MatthewGram</div>
+        <div class="menu-icon">
+            <i class="fas fa-ellipsis-h"></i>
+        </div>
+    </div>
+
+    <!-- Profile Info Section -->
+    <div class="profile-info">
+        <!-- Profile Picture and Stats Row -->
+        <div class="profile-header-content">
+            <!-- Profile Picture -->
+            <div class="profile-picture">
+                <div class="profile-avatar">
+                    <img src="images/profilePic.png" alt="Profile picture">
+                </div>
+            </div>
+
+            <!-- Stats Section -->
+            <div class="profile-stats">
+                <div class="stat">
+                    <span class="stat-number">317</span>
+                    <span class="stat-label">posts</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">67</span>
+                    <span class="stat-label">followers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">689</span>
+                    <span class="stat-label">following</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Username Placeholder -->
+        <div class="username">ElCapitanCortes</div>
+
+        <!-- Bio Section -->
+        <div class="bio-section">
+            <div class="bio-text">Hi chat im Hernan Cortez</div>
+
+            <!-- Action Buttons -->
+            <div class="profile-actions">
+                <button class="message-btn">Message</button>
+                <button class="follow-btn">
+                    <i class="fas fa-user-check"></i>
+                </button>
+                <button class="dropdown-btn">
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+            </div>
+
+            <!-- Followed By Section -->
+            <div class="followed-by-section">
+                <span class="followed-by-text">Followed by:</span>
+                <div class="followed-by-avatars">
+                    <div class="small-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="small-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="small-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="nav-tabs">
+        <div class="nav-tab active">
+            <i class="fas fa-square"></i>
+        </div>
+        <div class="nav-tab">
+            <i class="fas fa-film"></i>
+        </div>
+        <div class="nav-tab">
+            <i class="fas fa-tag"></i>
+        </div>
+    </div>
+
+    <!-- Posts Grid Container -->
+    <div class="posts-container">
+        <div class="posts-grid">
+            <div class="post-item" data-post-id="1">
+                <img src="images/imageForFirstFeed.png" alt="Post 1">
+            </div>
+            <div class="post-item" data-post-id="2">
+                <img src="images/imageForSecondFeed.png" alt="Post 2">
+            </div>
+            <div class="post-item" data-post-id="3">
+                <img src="images/imageForThirdFeed.png" alt="Post 3">
+            </div>
+            <div class="post-item" data-post-id="4">
+                <img src="images/imageForFirstFeed.png" alt="Post 4">
+            </div>
+            <div class="post-item" data-post-id="5">
+                <img src="images/imageForFirstFeed.png" alt="Post 5">
+            </div>
+            <div class="post-item" data-post-id="6">
+                <img src="images/imageForFirstFeed.png" alt="Post 6">
+            </div>
+            <div class="post-item" data-post-id="7">
+                <img src="images/imageForFirstFeed.png" alt="Post 7">
+            </div>
+            <div class="post-item" data-post-id="8">
+                <img src="images/imageForFirstFeed.png" alt="Post 8">
+            </div>
+            <div class="post-item" data-post-id="9">
+                <img src="images/imageForFirstFeed.png" alt="Post 9">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mapping function: maps grid posts directly to feed posts (1-to-1)
+        function mapGridPostToFeedPost(gridPostId) {
+            return parseInt(gridPostId); // Direct 1-to-1 mapping
+        }
+
+        // Function to navigate to a specific post on page 2
+        function showPage(pageId, postId) {
+            if (pageId === 'page-2') {
+                const feedPostId = mapGridPostToFeedPost(postId);
+                window.location.href = 'page-2.html?post=' + feedPostId;
+            }
+        }
+
+        // Add click event listeners to all post items
+        document.addEventListener('DOMContentLoaded', function() {
+            const postItems = document.querySelectorAll('.post-item');
+            
+            postItems.forEach(function(postItem) {
+                postItem.addEventListener('click', function() {
+                    const postId = this.getAttribute('data-post-id');
+                    showPage('page-2', postId);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
