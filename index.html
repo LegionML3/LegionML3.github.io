@@ -196,19 +196,22 @@
         /* Followed by section */
         .followed-by-section {
             display: flex;
-            flex-direction: column;
+            align-items: center;
             gap: 8px;
             margin-top: 8px;
+            flex-wrap: wrap;
         }
 
         .followed-by-text {
             font-size: 12px;
             color: #8a8a8a;
+            white-space: nowrap;
         }
 
         .followed-by-avatars {
             display: flex;
-            gap: 6px;
+            align-items: center;
+            margin-right: 4px;
         }
 
         .small-avatar {
@@ -216,12 +219,43 @@
             height: 24px;
             border-radius: 50%;
             background-color: #f0f0f0;
-            border: 1px solid #dbdbdb;
+            border: 2px solid #ffffff;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #8a8a8a;
             font-size: 12px;
+            margin-left: -8px;
+            position: relative;
+            z-index: 1;
+            flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .small-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .small-avatar:first-child {
+            margin-left: 0;
+            z-index: 3;
+        }
+
+        .small-avatar:nth-child(2) {
+            z-index: 2;
+        }
+
+        .small-avatar:nth-child(3) {
+            z-index: 1;
+        }
+
+        .followed-by-description {
+            font-size: 12px;
+            color: #000;
         }
 
         /* Navigation Bar */
@@ -300,6 +334,182 @@
             display: block;
         }
 
+        /* Chat Modal Styles */
+        .chat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .chat-modal.active {
+            display: flex;
+        }
+
+        .chat-window {
+            background-color: #fff;
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .chat-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #efefef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .chat-close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .message {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 8px;
+            align-items: flex-end;
+        }
+
+        .message.user {
+            justify-content: flex-end;
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 10px 12px;
+            border-radius: 18px;
+            word-wrap: break-word;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .message.user .message-content {
+            background-color: #0a7cff;
+            color: white;
+            border-radius: 18px 4px 18px 18px;
+        }
+
+        .message.other .message-content {
+            background-color: #e8e8e8;
+            color: #000;
+            border-radius: 4px 18px 18px 18px;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: 4px;
+            align-items: center;
+            padding: 10px 12px;
+            background-color: #e8e8e8;
+            border-radius: 18px 4px 18px 18px;
+            width: fit-content;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #999;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                opacity: 0.5;
+                transform: translateY(0);
+            }
+            30% {
+                opacity: 1;
+                transform: translateY(-10px);
+            }
+        }
+
+        .chat-input-area {
+            padding: 12px 16px;
+            border-top: 1px solid #efefef;
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .chat-input {
+            flex: 1;
+            border: 1px solid #dbdbdb;
+            border-radius: 18px;
+            padding: 10px 16px;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+            resize: none;
+            max-height: 100px;
+        }
+
+        .chat-input:focus {
+            border-color: #0a7cff;
+        }
+
+        .chat-send-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #0a7cff;
+            cursor: pointer;
+            padding: 8px 4px;
+        }
+
+        .chat-send-btn:disabled {
+            color: #ccc;
+            cursor: not-allowed;
+        }
+
         /* Responsive - Mobile First */
         @media (max-width: 480px) {
             body {
@@ -354,6 +564,10 @@
             .post-item i {
                 font-size: 32px;
             }
+
+            .chat-window {
+                height: 90vh;
+            }
         }
     </style>
 </head>
@@ -376,7 +590,7 @@
             <!-- Profile Picture -->
             <div class="profile-picture">
                 <div class="profile-avatar">
-                    <img src="images/profilePic.png" alt="Profile picture">
+                    <img src="images/profilePic.png" alt="Profile picture" loading="lazy">
                 </div>
             </div>
 
@@ -417,18 +631,18 @@
 
             <!-- Followed By Section -->
             <div class="followed-by-section">
-                <span class="followed-by-text">Followed by:</span>
                 <div class="followed-by-avatars">
                     <div class="small-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/fern.png" alt="user1" loading="lazy">
                     </div>
                     <div class="small-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/izzy.png" alt="user2" loading="lazy">
                     </div>
                     <div class="small-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/charles.png" alt="user3" loading="lazy">
                     </div>
                 </div>
+                <span class="followed-by-description">Followed by KingFern, IzzyQueen, TheFifthCharles and 15 others</span>
             </div>
         </div>
     </div>
@@ -450,31 +664,57 @@
     <div class="posts-container">
         <div class="posts-grid">
             <div class="post-item" data-post-id="1">
-                <img src="images/LandInVeracruz.png" alt="Post 1">
+                <img src="images/LandInVeracruz.png" alt="Post 1" loading="lazy">
             </div>
             <div class="post-item" data-post-id="2">
-                <img src="images/BurningShips.png" alt="Post 2">
+                <img src="images/BurningShips.png" alt="Post 2" loading="lazy">
             </div>
             <div class="post-item" data-post-id="3">
-                <img src="images/MeetingNatives.png" alt="Post 3">
+                <img src="images/MeetingNatives.png" alt="Post 3" loading="lazy">
             </div>
             <div class="post-item" data-post-id="4">
-                <img src="images/ArivalCity.png" alt="Post 4">
+                <img src="images/ArivalCity.png" alt="Post 4" loading="lazy">
             </div>
             <div class="post-item" data-post-id="5">
-                <img src="images/Arest.png" alt="Post 5">
+                <img src="images/Arest.png" alt="Post 5" loading="lazy">
             </div>
             <div class="post-item" data-post-id="6">
-                <img src="images/Noche.png" alt="Post 6">
+                <img src="images/Noche.png" alt="Post 6" loading="lazy">
             </div>
             <div class="post-item" data-post-id="7">
-                <img src="images/Naval.png" alt="Post 7">
+                <img src="images/Naval.png" alt="Post 7" loading="lazy">
             </div>
             <div class="post-item" data-post-id="8">
-                <img src="images/Conquer.png" alt="Post 8">
+                <img src="images/Conquer.png" alt="Post 8" loading="lazy">
             </div>
             <div class="post-item" data-post-id="9">
-                <img src="images/imageForFirstFeed.png" alt="Post 9">
+                <img src="images/aura.png" alt="Post 9" loading="lazy">
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Modal -->
+    <div class="chat-modal" id="chatModal">
+        <div class="chat-window">
+            <div class="chat-header">
+                <div class="chat-header-title">ElCapitanCortes</div>
+                <button class="chat-close-btn" id="chatCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+            </div>
+            <div class="chat-input-area">
+                <input 
+                    type="text" 
+                    class="chat-input" 
+                    id="chatInput" 
+                    placeholder="Message..."
+                    autocomplete="off"
+                >
+                <button class="chat-send-btn" id="chatSendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
             </div>
         </div>
     </div>
@@ -492,6 +732,121 @@
                 window.location.href = 'page-2.html?post=' + feedPostId;
             }
         }
+
+        // Chat Modal Functionality
+        const chatModal = document.getElementById('chatModal');
+        const messageBtn = document.querySelector('.message-btn');
+        const chatCloseBtn = document.getElementById('chatCloseBtn');
+        const chatInput = document.getElementById('chatInput');
+        const chatSendBtn = document.getElementById('chatSendBtn');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Open chat modal
+        messageBtn.addEventListener('click', function() {
+            chatModal.classList.add('active');
+            chatInput.focus();
+        });
+
+        // Close chat modal
+        chatCloseBtn.addEventListener('click', function() {
+            chatModal.classList.remove('active');
+        });
+
+        // Close modal when clicking outside
+        chatModal.addEventListener('click', function(e) {
+            if (e.target === chatModal) {
+                chatModal.classList.remove('active');
+            }
+        });
+
+        // Send message on button click
+        chatSendBtn.addEventListener('click', sendMessage);
+
+        // Send message on Enter key
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                sendMessage();
+            }
+        });
+
+        // Update send button state
+        chatInput.addEventListener('input', function() {
+            chatSendBtn.disabled = this.value.trim() === '';
+        });
+        messages = [
+            "This user died like 140 years ago. Please stop messaging.",
+            "Bro is talking to a ghost",
+            "Imagine messaging a dead guy",
+            "He can't reply, he's dead",
+            "Cortez can't see your messages, he's dead",
+            "Why are you messaging a dead guy? He's not gonna reply",
+            "Cortez is dead, stop messaging him",
+        ];
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (message === '') return;
+
+            // Add user message
+            addMessage(message, 'user');
+            chatInput.value = '';
+            chatSendBtn.disabled = true;
+            chatInput.focus();
+            scrollToBottom();
+
+            // Show typing indicator after a short delay
+            setTimeout(function() {
+                addTypingIndicator();
+                scrollToBottom();
+
+                // Auto-reply after 1.5 seconds of typing
+                setTimeout(function() {
+                    removeTypingIndicator();
+                    addMessage(messages[Math.floor(Math.random() * messages.length)], 'other');
+                    scrollToBottom();
+                }, Math.random() * 1000 + 1500); // Random delay between 1.5s and 2.5s
+            }, 500);
+        }
+        
+        function addMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = 'message ' + sender;
+            messageDiv.innerHTML = '<div class="message-content">' + escapeHtml(text) + '</div>';
+            chatMessages.appendChild(messageDiv);
+        }
+
+        function addTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'message other';
+            typingDiv.id = 'typing-indicator';
+            typingDiv.innerHTML = '<div class="typing-indicator"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div>';
+            chatMessages.appendChild(typingDiv);
+        }
+
+        function removeTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function scrollToBottom() {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
+
+        // Disable send button initially
+        chatSendBtn.disabled = true;
 
         // Add click event listeners to all post items
         document.addEventListener('DOMContentLoaded', function() {

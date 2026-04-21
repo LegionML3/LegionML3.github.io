@@ -265,6 +265,7 @@
             font-size: 24px;
             cursor: pointer;
             transition: all 0.2s ease;
+            overflow: hidden;
         }
 
         .story:hover {
@@ -280,6 +281,15 @@
             align-items: center;
             justify-content: center;
             color: #8a8a8a;
+            overflow: hidden;
+        }
+
+        .story-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
         }
 
         /* Responsive */
@@ -334,22 +344,22 @@
         </div>
         <div class="story">
             <div class="story-inner">
-                <i class="fas fa-user"></i>
+                <img src="images/m.png" alt="Story 1" loading="lazy">
             </div>
         </div>
         <div class="story">
             <div class="story-inner">
-                <i class="fas fa-user"></i>
+                <img src="images/pedro.png" alt="Story 2" loading="lazy">
             </div>
         </div>
         <div class="story">
             <div class="story-inner">
-                <i class="fas fa-user"></i>
+                <img src="images/gon.png" alt="Story 3" loading="lazy">
             </div>
         </div>
         <div class="story">
             <div class="story-inner">
-                <i class="fas fa-user"></i>
+                <img src="images/di.png" alt="Story 4" loading="lazy">
             </div>
         </div>
     </div>
@@ -373,7 +383,7 @@
                 </div>
             </div>
             <div class="post-image">
-                <img src="images/LandInVeracruz.png" alt="Post image">
+                <img src="images/LandInVeracruz.png" alt="Post image" loading="lazy">
             </div>
             <div class="post-actions">
                 <div class="action-icons">
@@ -394,7 +404,7 @@
             <div class="post-stats">120 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                Just landed in Veracruz! Can't wait to get rich and famous! #Veracruz #ForNewSpain #GoConquistadors
+                Just landed in Veracruz! Can't wait to get rich and famous! <strong>#Veracruz</strong> <strong>#ForNewSpain</strong> <strong>#GoConquistadors</strong>
             </div>
             <div class="post-comments">View all 25 comments</div>
             <div class="post-date">149 years ago</div>
@@ -417,7 +427,7 @@
                 </div>
             </div>
             <div class="post-image">
-                <img src="images/BurningShips.png" alt="Post image">
+                <img src="images/BurningShips.png" alt="Post image" loading="lazy">
             </div>
             <div class="post-actions">
                 <div class="action-icons">
@@ -438,7 +448,7 @@
             <div class="post-stats">120 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                I ordered my men to burn the ships! The is no going back! #Veracruz #NoTurningBack #CommittedToConquest
+                I ordered my men to burn the ships! The is no going back! <strong>#Veracruz</strong> <strong>#NoTurningBack</strong> <strong>#CommittedToConquest</strong>
             </div>
             <div class="post-comments">View all 180 comments</div>
             <div class="post-date">149 years ago</div>
@@ -459,7 +469,7 @@
                 </div>
             </div>
             <div class="post-image">
-                <img src="images/MeetingNatives.png" alt="Post image">
+                <img src="images/MeetingNatives.png" alt="Post image" loading="lazy">
             </div>
             <div class="post-actions">
                 <div class="action-icons">
@@ -480,7 +490,7 @@
             <div class="post-stats">2.5k likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                Securing an alliance with the Tlaxcalans! They promise to help us conquer the Aztec Empire! #HonorAndGlory #StrategicAlliance #NativesXConquistadors
+                Securing an alliance with the Tlaxcalans! They promise to help us conquer the Aztec Empire! <strong>#HonorAndGlory</strong> <strong>#StrategicAlliance</strong> <strong>#NativesXConquistadors</strong>
             </div>
             <div class="post-comments">View all 47 comments</div>
             <div class="post-date">149 years ago</div>
@@ -501,7 +511,7 @@
                 </div>
             </div>
             <div class="post-image">
-                <img src="images/ArivalCity.png" alt="Post image">
+                <img src="images/ArivalCity.png" alt="Post image" loading="lazy">
             </div>
             <div class="post-actions">
                 <div class="action-icons">
@@ -522,7 +532,7 @@
             <div class="post-stats">120 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                Finaly, after weeks of marching we found the heart of the Aztec Empire! It is a sight to behold! Larger than any european city, this city left us in awe! #Tenochtitlan #AztecEmpire #CityOfTemples #NewWorldWonders
+                Finaly, after weeks of marching we found the heart of the Aztec Empire! It is a sight to behold! Larger than any european city, this city left us in awe! <strong>#Tenochtitlan</strong> <strong>#AztecEmpire</strong> <strong>#CityOfTemples</strong> <strong>#NewWorldWonders</strong>
             </div>
             <div class="post-comments">View all 25 comments</div>
             <div class="post-date">149 years ago</div>
@@ -543,7 +553,7 @@
                 </div>
             </div>
             <div class="post-image">
-                <img src="images/Arest.png" alt="Post image">
+                <img src="images/Arest.png" alt="Post image" loading="lazy">
             </div>
             <div class="post-actions">
                 <div class="action-icons">
@@ -564,7 +574,7 @@
             <div class="post-stats">1.8k likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                The Tenochtitlan leader, Moctezuma, is officially under our "protection"! We take control of the Tenochtitlans by neutralizing their leader! #Tenochtitlan #PowerMove #WhosInChargeNow #ConquistadorsRule #TenochtitlanForSpain
+                The Tenochtitlan leader, Moctezuma, is officially under our "protection"! We take control of the Tenochtitlans by neutralizing their leader! <strong>#Tenochtitlan</strong> <strong>#PowerMove</strong> <strong>#WhosInChargeNow</strong> <strong>#ConquistadorsRule</strong> <strong>#TenochtitlanForSpain</strong>
             </div>
             <div class="post-comments">View all 67 comments</div>
             <div class="post-date">149 years ago</div>
@@ -585,7 +595,7 @@
                 </div>
             </div>
             <div class="post-image">
-                <img src="images/Noche.png" alt="Post image">
+                <img src="images/Noche.png" alt="Post image" loading="lazy">
             </div>
             <div class="post-actions">
                 <div class="action-icons">
@@ -606,7 +616,7 @@
             <div class="post-stats">120 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                The unimaginable has happend! The Aztecs have revolted! Burning arrows from thew city shoot our boats, running for our lives we try to escape! #AztecRevolt #ConquistadorsInTrouble #RespectForTheFallen #FirstBattleLost
+                The unimaginable has happend! The Aztecs have revolted! Burning arrows from the city shoot our boats, running for our lives we try to escape! <strong>#AztecRevolt</strong> <strong>#ConquistadorsInTrouble</strong> <strong>#RespectForTheFallen</strong> <strong>#FirstBattleLost</strong>
             </div>
             <div class="post-comments">View all 47 comments</div>
             <div class="post-date">149 years ago</div>
@@ -627,7 +637,7 @@
                 </div>
             </div>
             <div class="post-image">
-                <img src="images/Naval.png" alt="Post image">
+                <img src="images/Naval.png" alt="Post image" loading="lazy">
             </div>
             <div class="post-actions">
                 <div class="action-icons">
@@ -648,7 +658,7 @@
             <div class="post-stats">120 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                We decide to lock in. We spend one year regrouping & resupplying! We fight the Tenochtitlans by sea! #ForGlory #SeaInvasion #BattleTime #ConquistadorsXAztecs
+                We decide to lock in. We spend one year regrouping & resupplying! We fight the Tenochtitlans by sea! <strong>#ForGlory</strong> <strong>#SeaInvasion</strong> <strong>#BattleTime</strong> <strong>#ConquistadorsXAztecs</strong>
             </div>
             <div class="post-comments">View all 25 comments</div>
             <div class="post-date">149 years ago</div>
@@ -669,7 +679,7 @@
                 </div>
             </div>
             <div class="post-image">
-                <img src="images/Conquer.png" alt="Post image">
+                <img src="images/Conquer.png" alt="Post image" loading="lazy">
             </div>
             <div class="post-actions">
                 <div class="action-icons">
@@ -690,9 +700,51 @@
             <div class="post-stats">120 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                Evetrything led up to this moment! Tenochtitlan has fallen! We won! This is the birth of a new era! The birth of New Spain! #ConquistadorsForTheWin #NewSpain #AztecEmpireFalls #HistoryMade
+                Evetrything led up to this moment! Tenochtitlan has fallen! We won! This is the birth of a new era! The birth of New Spain! <strong>#ConquistadorsForTheWin</strong> <strong>#NewSpain</strong> <strong>#AztecEmpireFalls</strong> <strong>#HistoryMade</strong>
             </div>
             <div class="post-comments">View all 25 comments</div>
+            <div class="post-date">149 years ago</div>
+        </div>
+        <div class="post-card" id="post-9">
+            <div class="post-header">
+                <div class="post-user-info">
+                    <div class="post-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="post-user-details">
+                        <div class="post-username">ElCapitanCortes</div>
+                        <div class="post-location">Tenochtitlan</div>
+                    </div>
+                </div>
+                <div class="post-menu">
+                    <i class="fas fa-ellipsis-h"></i>
+                </div>
+            </div>
+            <div class="post-image">
+                <img src="images/aura.png" alt="Post image" loading="lazy">
+            </div>
+            <div class="post-actions">
+                <div class="action-icons">
+                    <div class="action-icon">
+                        <i class="far fa-heart"></i>
+                    </div>
+                    <div class="action-icon">
+                        <i class="far fa-comment"></i>
+                    </div>
+                    <div class="action-icon">
+                        <i class="fas fa-paper-plane"></i>
+                    </div>
+                </div>
+                <div class="bookmark-icon">
+                    <i class="far fa-bookmark"></i>
+                </div>
+            </div>
+            <div class="post-stats">5k likes</div>
+            <div class="post-caption">
+                <span class="caption-username">ElCapitanCortes</span>
+                I'm apointed as the governer of New Spain! My reign begins now! <strong>#NewGovernor</strong> <strong>#NewSpain</strong> <strong>#FirstOfMany</strong> <strong>#ConquistadorsRule</strong>
+            </div>
+            <div class="post-comments">View all 653 comments</div>
             <div class="post-date">149 years ago</div>
         </div>
 
