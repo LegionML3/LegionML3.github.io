@@ -114,6 +114,23 @@
             justify-content: center;
             font-size: 18px;
             color: #8a8a8a;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .post-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .post-avatar:hover img {
+            transform: scale(1.08);
+            filter: brightness(0.95);
         }
 
         .post-user-details {
@@ -229,6 +246,256 @@
             font-size: 12px;
             color: #8a8a8a;
             text-transform: uppercase;
+        }
+
+        /* Comments Modal */
+        .comments-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            align-items: flex-end;
+            justify-content: center;
+        }
+
+        .comments-modal.active {
+            display: flex;
+        }
+
+        .comments-window {
+            background-color: #fff;
+            width: 100%;
+            max-width: 600px;
+            height: 80vh;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.3s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(100%);
+            }
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .comments-header {
+            padding: 12px 16px;
+            border-bottom: 1px solid #efefef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .comments-header-title {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .comments-close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #000;
+        }
+
+        .comments-list {
+            flex: 1;
+            overflow-y: auto;
+            padding: 12px 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comment-item {
+            padding: 12px 16px;
+            display: flex;
+            gap: 12px;
+            border-bottom: 1px solid #efefef;
+            align-items: flex-start;
+        }
+
+        .comment-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            border: 1px solid #dbdbdb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #8a8a8a;
+            font-size: 14px;
+            flex-shrink: 0;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+
+        .comment-avatar:hover {
+            transform: scale(1.05);
+            filter: brightness(0.95);
+        }
+
+        .comment-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: block;
+        }
+
+        .comment-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .comment-header {
+            display: flex;
+            gap: 6px;
+            align-items: baseline;
+        }
+
+        .comment-username {
+            font-weight: 600;
+            font-size: 13px;
+            color: #000;
+        }
+
+        .comment-text {
+            font-size: 13px;
+            color: #000;
+            line-height: 1.4;
+            word-break: break-word;
+        }
+
+        .comment-text-input {
+            width: 100%;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 8px 10px;
+            font-size: 13px;
+            font-family: inherit;
+            resize: none;
+            outline: none;
+            max-height: 100px;
+        }
+
+        .comment-text-input:focus {
+            border-color: #0a7cff;
+        }
+
+        .comment-actions {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: #8a8a8a;
+            margin-top: 4px;
+        }
+
+        .comment-action-btn {
+            background: none;
+            border: none;
+            color: #8a8a8a;
+            cursor: pointer;
+            font-size: 12px;
+            padding: 0;
+            transition: color 0.2s ease;
+        }
+
+        .comment-action-btn:hover {
+            color: #000;
+        }
+
+        .comment-edit-actions {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .comment-save-btn {
+            background-color: #0a7cff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .comment-save-btn:hover {
+            background-color: #0052cc;
+        }
+
+        .comment-cancel-btn {
+            background-color: #efefef;
+            color: #000;
+            border: none;
+            border-radius: 4px;
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .comment-cancel-btn:hover {
+            background-color: #dbdbdb;
+        }
+
+        .comment-time {
+            font-size: 12px;
+            color: #8a8a8a;
+        }
+
+        .comments-input-area {
+            padding: 12px 16px;
+            border-top: 1px solid #efefef;
+            display: flex;
+            gap: 8px;
+            align-items: flex-end;
+        }
+
+        .comments-input {
+            flex: 1;
+            border: 1px solid #dbdbdb;
+            border-radius: 18px;
+            padding: 10px 16px;
+            font-size: 14px;
+            outline: none;
+            font-family: inherit;
+            resize: none;
+            max-height: 100px;
+        }
+
+        .comments-input:focus {
+            border-color: #0a7cff;
+        }
+
+        .comments-send-btn {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: #0a7cff;
+            cursor: pointer;
+            padding: 8px 4px;
+        }
+
+        .comments-send-btn:disabled {
+            color: #ccc;
+            cursor: not-allowed;
         }
 
         /* Stories Section */
@@ -371,7 +638,7 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
@@ -404,7 +671,7 @@
             <div class="post-stats">120 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                Just landed in Veracruz! Can't wait to get rich and famous! <strong>#Veracruz</strong> <strong>#ForNewSpain</strong> <strong>#GoConquistadors</strong>
+                Just landed in Veracruz! Diego won't be happy about this, but what can I do for fame, riches, and glory! <strong>#Veracruz</strong> <strong>#ForNewSpain</strong> <strong>#GoConquistadors</strong>
             </div>
             <div class="post-comments">View all 25 comments</div>
             <div class="post-date">149 years ago</div>
@@ -415,7 +682,7 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
@@ -457,7 +724,7 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
@@ -499,7 +766,7 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
@@ -541,7 +808,7 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
@@ -583,11 +850,11 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
-                        <div class="post-location">Tenochtitlan</div>
+                        <div class="post-location">Lake of Tenochtitlan</div>
                     </div>
                 </div>
                 <div class="post-menu">
@@ -625,11 +892,11 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
-                        <div class="post-location">{{LOCATION}}</div>
+                        <div class="post-location">Lake of Tenochtitlan</div>
                     </div>
                 </div>
                 <div class="post-menu">
@@ -667,7 +934,7 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
@@ -709,7 +976,7 @@
             <div class="post-header">
                 <div class="post-user-info">
                     <div class="post-avatar">
-                        <i class="fas fa-user"></i>
+                        <img src="images/profilePic.png" alt="ElCapitanCortes" loading="lazy">
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
@@ -747,6 +1014,32 @@
             <div class="post-comments">View all 653 comments</div>
             <div class="post-date">149 years ago</div>
         </div>
+
+    <!-- Comments Modal -->
+    <div class="comments-modal" id="commentsModal">
+        <div class="comments-window">
+            <div class="comments-header">
+                <div class="comments-header-title">Comments</div>
+                <button class="comments-close-btn" id="commentsCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="comments-list" id="commentsList">
+            </div>
+            <div class="comments-input-area">
+                <input 
+                    type="text" 
+                    class="comments-input" 
+                    id="commentsInput" 
+                    placeholder="Add a comment..."
+                    autocomplete="off"
+                >
+                <button class="comments-send-btn" id="commentsSendBtn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
 
     <script>
         // Get URL parameter for post ID
@@ -796,12 +1089,290 @@
             });
 
             // Comment click handler
-            document.querySelectorAll('.post-comments').forEach(function(comment) {
-                comment.addEventListener('click', function() {
-                    alert('Comments view would open here');
+            document.querySelectorAll('.post-comments').forEach(function(commentElement) {
+                commentElement.addEventListener('click', function() {
+                    // Get the post card that contains this comment element
+                    const postCard = this.closest('.post-card');
+                    const postId = postCard.id.replace('post-', '');
+                    openCommentsModal(postId);
                 });
             });
         });
+
+        // Sample comments data
+        // Function to get avatar path for a username
+        function getAvatarPath(username) {
+            const avatars = {
+                'ElCapitanCortes': 'images/profilePic.png',
+                'KingFern': 'images/fern.png',
+                'IzzyQueen': 'images/izzy.png',
+                'TheFifthCharles': 'images/charles.png',
+                "GovDiego": 'images/diego.png'
+                // Add more usernames and their corresponding avatar paths here
+            };
+            return avatars[username] || 'images/profilePic.png';
+        }
+
+        const commentsData = {
+            '1': [
+                { id: 1, username: 'GovDiego', avatar: getAvatarPath('GovDiego'), text: 'Buddy your not slick! 🧐 You were sent on a scouting mission, not to name yourself Captain General on the mission. I see those ships behind you... would be a shame if someone reported this to King Charles. 👑🚩 #Mutiny #Unfollowed #SeeYouInCourt', timestamp: 'Mar 15, 2h' },
+                { id: 2, username: 'IzzyQueen', avatar: getAvatarPath('IzzyQueen'), text: 'Incredible journey!', timestamp: 'Mar 15, 1h' },
+                { id: 3, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'What a brave expedition!', timestamp: 'Mar 14, 1d' }
+            ],
+            '2': [
+                { id: 1, username: 'KingFern', avatar: getAvatarPath('KingFern'), text: 'Bold decision to burn the ships! 🔥', timestamp: 'Mar 14, 2d' }
+            ],
+            '3': [
+                { id: 1, username: 'IzzyQueen', avatar: getAvatarPath('IzzyQueen'), text: 'First contact! 👀', timestamp: 'Mar 13, 3d' }
+            ],
+            '4': [
+                { id: 1, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'The architecture is stunning!', timestamp: 'Mar 12, 4d' }
+            ],
+            '5': [
+                { id: 1, username: 'KingFern', avatar: getAvatarPath('KingFern'), text: 'Tough times ahead', timestamp: 'Mar 11, 5d' }
+            ],
+            '6': [
+                { id: 1, username: 'IzzyQueen', avatar: getAvatarPath('IzzyQueen'), text: 'Night in the new world 🌙', timestamp: 'Mar 10, 6d' }
+            ],
+            '7': [
+                { id: 1, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'Naval dominance! ⛵', timestamp: 'Mar 9, 1w' }
+            ],
+            '8': [
+                { id: 1, username: 'KingFern', avatar: getAvatarPath('KingFern'), text: 'The conquest begins...', timestamp: 'Mar 8, 1w' }
+            ],
+            '9': [
+                { id: 1, username: 'IzzyQueen', avatar: getAvatarPath('IzzyQueen'), text: 'Pure aura! ✨', timestamp: 'Mar 7, 2w' }
+            ]
+        };
+
+        let currentPostId = null;
+
+        // Comments Modal Functionality
+        const commentsModal = document.getElementById('commentsModal');
+        const commentsCloseBtn = document.getElementById('commentsCloseBtn');
+        const commentsInput = document.getElementById('commentsInput');
+        const commentsSendBtn = document.getElementById('commentsSendBtn');
+        const commentsList = document.getElementById('commentsList');
+
+        // Close comments modal
+        commentsCloseBtn.addEventListener('click', function() {
+            commentsModal.classList.remove('active');
+            currentPostId = null;
+        });
+
+        // Close modal when clicking outside
+        commentsModal.addEventListener('click', function(e) {
+            if (e.target === commentsModal) {
+                commentsModal.classList.remove('active');
+                currentPostId = null;
+            }
+        });
+
+        // Send comment on button click
+        commentsSendBtn.addEventListener('click', addNewComment);
+
+        // Send comment on Enter key
+        commentsInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                addNewComment();
+            }
+        });
+
+        // Update send button state
+        commentsInput.addEventListener('input', function() {
+            commentsSendBtn.disabled = this.value.trim() === '';
+        });
+
+        // Disable send button initially
+        commentsSendBtn.disabled = true;
+
+        // Function to open comments modal for a post
+        function openCommentsModal(postId) {
+            currentPostId = postId;
+            commentsModal.classList.add('active');
+            commentsList.innerHTML = '';
+            
+            // Initialize empty comments array for this post if it doesn't exist
+            if (!commentsData[postId]) {
+                commentsData[postId] = [];
+            }
+            
+            // Load comments for this post
+            if (commentsData[postId].length > 0) {
+                commentsData[postId].forEach(comment => {
+                    renderComment(comment, postId);
+                });
+            }
+            
+            commentsInput.focus();
+            scrollCommentsToBottom();
+        }
+
+        // Function to render a single comment
+        function renderComment(comment, postId) {
+            const commentDiv = document.createElement('div');
+            commentDiv.className = 'comment-item';
+            commentDiv.id = `comment-${postId}-${comment.id}`;
+            
+            commentDiv.innerHTML = `
+                <div class="comment-avatar">
+                    <img src="${comment.avatar}" alt="${escapeHtml(comment.username)}" loading="lazy">
+                </div>
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-username">${escapeHtml(comment.username)}</span>
+                        <span class="comment-time">${comment.timestamp}</span>
+                    </div>
+                    <div class="comment-text" id="comment-text-${postId}-${comment.id}">
+                        ${escapeHtml(comment.text)}
+                    </div>
+                    <div class="comment-actions">
+                        <button class="comment-action-btn edit-comment-btn" data-comment-id="${comment.id}">
+                            Edit
+                        </button>
+                        <button class="comment-action-btn delete-comment-btn" data-comment-id="${comment.id}">
+                            Delete
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            commentsList.appendChild(commentDiv);
+            
+            // Add event listeners for edit and delete
+            const editBtn = commentDiv.querySelector('.edit-comment-btn');
+            const deleteBtn = commentDiv.querySelector('.delete-comment-btn');
+            
+            editBtn.addEventListener('click', function() {
+                editComment(comment.id, comment.text, postId);
+            });
+            
+            deleteBtn.addEventListener('click', function() {
+                deleteComment(comment.id, postId);
+            });
+            
+            scrollCommentsToBottom();
+        }
+
+        // Function to add a new comment
+        function addNewComment() {
+            const text = commentsInput.value.trim();
+            if (text === '' || currentPostId === null) return;
+            
+            // Generate new comment ID
+            const newId = commentsData[currentPostId].length > 0 
+                ? Math.max(...commentsData[currentPostId].map(c => c.id)) + 1 
+                : 1;
+            
+            const newComment = {
+                id: newId,
+                username: 'ElCapitanCortes',
+                avatar: getAvatarPath('ElCapitanCortes'),
+                text: text,
+                timestamp: 'now'
+            };
+            
+            commentsData[currentPostId].push(newComment);
+            renderComment(newComment, currentPostId);
+            
+            commentsInput.value = '';
+            commentsSendBtn.disabled = true;
+            commentsInput.focus();
+        }
+
+        // Function to edit a comment
+        function editComment(commentId, currentText, postId) {
+            const commentDiv = document.getElementById(`comment-${postId}-${commentId}`);
+            const textDiv = document.getElementById(`comment-text-${postId}-${commentId}`);
+            const actionsDiv = commentDiv.querySelector('.comment-actions');
+            
+            // Create edit interface
+            const textarea = document.createElement('textarea');
+            textarea.className = 'comment-text-input';
+            textarea.value = currentText;
+            
+            const buttonContainer = document.createElement('div');
+            buttonContainer.className = 'comment-edit-actions';
+            
+            const saveBtn = document.createElement('button');
+            saveBtn.className = 'comment-save-btn';
+            saveBtn.textContent = 'Save';
+            
+            const cancelBtn = document.createElement('button');
+            cancelBtn.className = 'comment-cancel-btn';
+            cancelBtn.textContent = 'Cancel';
+            
+            buttonContainer.appendChild(saveBtn);
+            buttonContainer.appendChild(cancelBtn);
+            
+            // Replace text with textarea
+            textDiv.style.display = 'none';
+            actionsDiv.style.display = 'none';
+            textDiv.parentNode.insertBefore(textarea, textDiv.nextSibling);
+            textarea.parentNode.insertBefore(buttonContainer, textarea.nextSibling);
+            
+            textarea.focus();
+            textarea.select();
+            
+            // Save changes
+            saveBtn.addEventListener('click', function() {
+                const newText = textarea.value.trim();
+                if (newText !== '') {
+                    // Update in data
+                    const comment = commentsData[postId].find(c => c.id === commentId);
+                    if (comment) {
+                        comment.text = newText;
+                    }
+                    
+                    // Update in UI
+                    textDiv.textContent = newText;
+                    textDiv.style.display = 'block';
+                    actionsDiv.style.display = 'flex';
+                    textarea.remove();
+                    buttonContainer.remove();
+                }
+            });
+            
+            // Cancel edit
+            cancelBtn.addEventListener('click', function() {
+                textDiv.style.display = 'block';
+                actionsDiv.style.display = 'flex';
+                textarea.remove();
+                buttonContainer.remove();
+            });
+        }
+
+        // Function to delete a comment
+        function deleteComment(commentId, postId) {
+            if (confirm('Delete this comment?')) {
+                // Remove from data
+                commentsData[postId] = commentsData[postId].filter(c => c.id !== commentId);
+                
+                // Remove from UI
+                const commentDiv = document.getElementById(`comment-${postId}-${commentId}`);
+                if (commentDiv) {
+                    commentDiv.remove();
+                }
+            }
+        }
+
+        // Function to scroll comments to bottom
+        function scrollCommentsToBottom() {
+            commentsList.scrollTop = commentsList.scrollHeight;
+        }
+
+        // Function to escape HTML
+        function escapeHtml(text) {
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.replace(/[&<>"']/g, m => map[m]);
+        }
     </script>
 
 </body>
