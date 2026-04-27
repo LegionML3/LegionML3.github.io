@@ -87,6 +87,11 @@
             display: flex;
             flex-direction: column;
             border-bottom: 1px solid #efefef;
+            transition: background-color 0.3s ease;
+        }
+
+        .post-card:hover {
+            background-color: #fafafa;
         }
 
         /* Post Header */
@@ -167,6 +172,7 @@
             font-size: 48px;
             color: #c8c8c8;
             overflow: hidden;
+            cursor: pointer;
         }
 
         .post-image img {
@@ -174,6 +180,11 @@
             height: 100%;
             object-fit: cover;
             display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .post-image:hover img {
+            transform: scale(1.02);
         }
 
         /* Post Actions */
@@ -183,6 +194,11 @@
             padding: 12px 16px;
             font-size: 20px;
             cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .post-actions:hover {
+            background-color: #fafafa;
         }
 
         .action-icons {
@@ -192,19 +208,47 @@
 
         .action-icon {
             color: #000;
-            transition: all 0.2s ease;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
         }
 
         .action-icon:hover {
             color: #8a8a8a;
+            transform: scale(1.15);
         }
 
         .action-icon.liked {
             color: #ed4956;
+            animation: heartBeat 0.6s ease;
+        }
+
+        @keyframes heartBeat {
+            0% {
+                transform: scale(1);
+            }
+            14% {
+                transform: scale(1.3);
+            }
+            28% {
+                transform: scale(1);
+            }
+            42% {
+                transform: scale(1.3);
+            }
+            70% {
+                transform: scale(1);
+            }
         }
 
         .bookmark-icon {
             color: #000;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+        }
+
+        .bookmark-icon:hover {
+            color: #8a8a8a;
+            transform: scale(1.15);
         }
 
         /* Post Stats */
@@ -213,6 +257,23 @@
             font-size: 14px;
             font-weight: 600;
             color: #000;
+            transition: all 0.3s ease;
+        }
+
+        .post-stats.pulse {
+            animation: countPulse 0.4s ease;
+        }
+
+        @keyframes countPulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
 
         /* Post Caption */
@@ -224,7 +285,7 @@
         }
 
         .caption-username {
-            font-weight: 600;
+            font-weight: 700;
             margin-right: 4px;
         }
 
@@ -234,6 +295,7 @@
             font-size: 13px;
             color: #8a8a8a;
             cursor: pointer;
+            transition: all 0.2s ease;
         }
 
         .post-comments:hover {
@@ -587,6 +649,63 @@
                 font-size: 11px;
             }
         }
+
+        /* Image Expansion Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+            z-index: 2001;
+        }
+
+        .image-modal-close:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -673,8 +792,8 @@
                 <span class="caption-username">ElCapitanCortes</span>
                 Just landed in Veracruz! Diego won't be happy about this, but what can I do for fame, riches, and glory! <strong>#Veracruz</strong> <strong>#ForNewSpain</strong> <strong>#GoConquistadors</strong>
             </div>
-            <div class="post-comments">View all 25 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 3 comments</div>
+            <div class="post-date">APRIL 22, 1519</div>
         </div>
 
         <!-- Post 2 - TEMPLATE: Edit the fields below -->
@@ -712,13 +831,13 @@
                     <i class="far fa-bookmark"></i>
                 </div>
             </div>
-            <div class="post-stats">120 likes</div>
+            <div class="post-stats">256 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
                 I ordered my men to burn the ships! The is no going back! <strong>#Veracruz</strong> <strong>#NoTurningBack</strong> <strong>#CommittedToConquest</strong>
             </div>
-            <div class="post-comments">View all 180 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 3 comments</div>
+            <div class="post-date">MAY 1, 1519</div>
         </div>
         <div class="post-card" id="post-3">
             <div class="post-header">
@@ -759,8 +878,8 @@
                 <span class="caption-username">ElCapitanCortes</span>
                 Securing an alliance with the Tlaxcalans! They promise to help us conquer the Aztec Empire! <strong>#HonorAndGlory</strong> <strong>#StrategicAlliance</strong> <strong>#NativesXConquistadors</strong>
             </div>
-            <div class="post-comments">View all 47 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 3 comments</div>
+            <div class="post-date">AUGUST 20, 1519</div>
         </div>
         <div class="post-card" id="post-4">
             <div class="post-header">
@@ -796,13 +915,13 @@
                     <i class="far fa-bookmark"></i>
                 </div>
             </div>
-            <div class="post-stats">120 likes</div>
+            <div class="post-stats">587 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
                 Finaly, after weeks of marching we found the heart of the Aztec Empire! It is a sight to behold! Larger than any european city, this city left us in awe! <strong>#Tenochtitlan</strong> <strong>#AztecEmpire</strong> <strong>#CityOfTemples</strong> <strong>#NewWorldWonders</strong>
             </div>
-            <div class="post-comments">View all 25 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 4 comments</div>
+            <div class="post-date">NOVEMBER 8, 1519</div>
         </div>
         <div class="post-card" id="post-5">
             <div class="post-header">
@@ -841,10 +960,10 @@
             <div class="post-stats">1.8k likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                The Tenochtitlan leader, Moctezuma, is officially under our "protection"! We take control of the Tenochtitlans by neutralizing their leader! <strong>#Tenochtitlan</strong> <strong>#PowerMove</strong> <strong>#WhosInChargeNow</strong> <strong>#ConquistadorsRule</strong> <strong>#TenochtitlanForSpain</strong>
+                Today I invited the leader of Tenochtitlan to the spanish quarters. He barely expected a thing! The Tenochtitlan leader, Moctezuma, is officially under our "protection"! We take control of the Tenochtitlans by neutralizing their leader! <strong>#Tenochtitlan</strong> <strong>#PowerMove</strong> <strong>#WhosInChargeNow</strong> <strong>#ConquistadorsRule</strong> <strong>#TenochtitlanForSpain</strong>
             </div>
-            <div class="post-comments">View all 67 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 7 comments</div>
+            <div class="post-date">NOVEMBER 19, 1519</div>
         </div>
         <div class="post-card" id="post-6">
             <div class="post-header">
@@ -880,13 +999,13 @@
                     <i class="far fa-bookmark"></i>
                 </div>
             </div>
-            <div class="post-stats">120 likes</div>
+            <div class="post-stats">5 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
                 The unimaginable has happend! The Aztecs have revolted! Burning arrows from the city shoot our boats, running for our lives we try to escape! <strong>#AztecRevolt</strong> <strong>#ConquistadorsInTrouble</strong> <strong>#RespectForTheFallen</strong> <strong>#FirstBattleLost</strong>
             </div>
-            <div class="post-comments">View all 47 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 10 comments</div>
+            <div class="post-date">JUNE 30, 1520</div>
         </div>
         <div class="post-card" id="post-7">
             <div class="post-header">
@@ -922,13 +1041,13 @@
                     <i class="far fa-bookmark"></i>
                 </div>
             </div>
-            <div class="post-stats">120 likes</div>
+            <div class="post-stats">874 likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
                 We decide to lock in. We spend one year regrouping & resupplying! We fight the Tenochtitlans by sea! <strong>#ForGlory</strong> <strong>#SeaInvasion</strong> <strong>#BattleTime</strong> <strong>#ConquistadorsXAztecs</strong>
             </div>
-            <div class="post-comments">View all 25 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 5 comments</div>
+            <div class="post-date">MAY 1, 1521</div>
         </div>
         <div class="post-card" id="post-8">
             <div class="post-header">
@@ -938,7 +1057,7 @@
                     </div>
                     <div class="post-user-details">
                         <div class="post-username">ElCapitanCortes</div>
-                        <div class="post-location">Tenochtitlan</div>
+                        <div class="post-location">Tlatelolco</div>
                     </div>
                 </div>
                 <div class="post-menu">
@@ -964,13 +1083,13 @@
                     <i class="far fa-bookmark"></i>
                 </div>
             </div>
-            <div class="post-stats">120 likes</div>
+            <div class="post-stats">3k likes</div>
             <div class="post-caption">
                 <span class="caption-username">ElCapitanCortes</span>
-                Evetrything led up to this moment! Tenochtitlan has fallen! We won! This is the birth of a new era! The birth of New Spain! <strong>#ConquistadorsForTheWin</strong> <strong>#NewSpain</strong> <strong>#AztecEmpireFalls</strong> <strong>#HistoryMade</strong>
+                Evetrything led up to this moment! The Aztec empire, conered, has fallen! We manage to capture Moctezuma's successor, Cuauhtémoc while he was trying to escape! This is the birth of a new era! The birth of New Spain! <strong>#ConquistadorsForTheWin</strong> <strong>#NewSpain</strong> <strong>#AztecEmpireFalls</strong> <strong>#HistoryMade</strong>
             </div>
-            <div class="post-comments">View all 25 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 3 comments</div>
+            <div class="post-date">AUGUST 13, 1521</div>
         </div>
         <div class="post-card" id="post-9">
             <div class="post-header">
@@ -1011,8 +1130,8 @@
                 <span class="caption-username">ElCapitanCortes</span>
                 I'm apointed as the governer of New Spain! My reign begins now! <strong>#NewGovernor</strong> <strong>#NewSpain</strong> <strong>#FirstOfMany</strong> <strong>#ConquistadorsRule</strong>
             </div>
-            <div class="post-comments">View all 653 comments</div>
-            <div class="post-date">149 years ago</div>
+            <div class="post-comments">View all 4 comments</div>
+            <div class="post-date">JANUARY 1522</div>
         </div>
 
     <!-- Comments Modal -->
@@ -1064,6 +1183,40 @@
             }
         }
 
+        // Like tracking system
+        const likeData = {
+            '1': { count: 120, liked: false },
+            '2': { count: 256, liked: false },
+            '3': { count: 2500, liked: false },
+            '4': { count: 587, liked: false },
+            '5': { count: 1800, liked: false },
+            '6': { count: 5, liked: false },
+            '7': { count: 874, liked: false },
+            '8': { count: 3000, liked: false },
+            '9': { count: 5000, liked: false }
+        };
+
+        // Format numbers (1000 -> 1k, 1500 -> 1.5k)
+        function formatLikeCount(num) {
+            if (num >= 1000) {
+                return (num / 1000).toFixed(num % 1000 === 0 ? 0 : 1) + 'k';
+            }
+            return num.toString();
+        }
+
+        // Update like count display
+        function updateLikeCount(postId) {
+            const postCard = document.getElementById('post-' + postId);
+            const statsElement = postCard.querySelector('.post-stats');
+            const count = likeData[postId].count;
+            statsElement.textContent = formatLikeCount(count) + ' likes';
+            
+            // Add pulse animation
+            statsElement.classList.remove('pulse');
+            void statsElement.offsetWidth; // Trigger reflow
+            statsElement.classList.add('pulse');
+        }
+
         // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
             const postId = getURLParameter('post');
@@ -1076,14 +1229,27 @@
                 window.location.href = 'index.html';
             });
 
-            // Heart icon click animation
-            document.querySelectorAll('.action-icon:first-child').forEach(function(heart) {
-                heart.addEventListener('click', function() {
-                    this.classList.toggle('liked');
-                    if (this.classList.contains('liked')) {
-                        this.innerHTML = '<i class="fas fa-heart"></i>';
-                    } else {
-                        this.innerHTML = '<i class="far fa-heart"></i>';
+            // Enhanced heart icon click functionality
+            document.querySelectorAll('.post-card').forEach(function(postCard, index) {
+                const postId = (index + 1).toString();
+                const heart = postCard.querySelector('.action-icon:first-child');
+                let doubleClickTimeout;
+
+                heart.addEventListener('click', function(e) {
+                    handleLike(postId, heart);
+                });
+
+                // Double-click to like (Instagram style)
+                postCard.querySelector('.post-image').addEventListener('dblclick', function(e) {
+                    if (!likeData[postId].liked) {
+                        likeData[postId].liked = true;
+                        likeData[postId].count++;
+                        heart.classList.add('liked');
+                        heart.innerHTML = '<i class="fas fa-heart"></i>';
+                        updateLikeCount(postId);
+                        
+                        // Show floating heart animation
+                        showFloatingHeart(e);
                     }
                 });
             });
@@ -1091,13 +1257,62 @@
             // Comment click handler
             document.querySelectorAll('.post-comments').forEach(function(commentElement) {
                 commentElement.addEventListener('click', function() {
-                    // Get the post card that contains this comment element
                     const postCard = this.closest('.post-card');
                     const postId = postCard.id.replace('post-', '');
                     openCommentsModal(postId);
                 });
             });
         });
+
+        // Handle like functionality
+        function handleLike(postId, heartElement) {
+            likeData[postId].liked = !likeData[postId].liked;
+            
+            if (likeData[postId].liked) {
+                likeData[postId].count++;
+                heartElement.classList.add('liked');
+                heartElement.innerHTML = '<i class="fas fa-heart"></i>';
+            } else {
+                likeData[postId].count--;
+                heartElement.classList.remove('liked');
+                heartElement.innerHTML = '<i class="far fa-heart"></i>';
+            }
+            
+            updateLikeCount(postId);
+        }
+
+        // Show floating heart animation (Instagram style)
+        function showFloatingHeart(event) {
+            const heart = document.createElement('div');
+            heart.style.position = 'fixed';
+            heart.style.left = event.clientX + 'px';
+            heart.style.top = event.clientY + 'px';
+            heart.style.color = '#ed4956';
+            heart.style.fontSize = '60px';
+            heart.style.pointerEvents = 'none';
+            heart.style.zIndex = '1500';
+            heart.style.fontWeight = 'bold';
+            heart.innerHTML = '<i class="fas fa-heart"></i>';
+            
+            document.body.appendChild(heart);
+            
+            // Animate upward and fade out
+            let opacity = 1;
+            let top = event.clientY;
+            
+            const animate = setInterval(function() {
+                top -= 5;
+                opacity -= 0.05;
+                heart.style.top = top + 'px';
+                heart.style.opacity = opacity;
+                heart.style.transform = 'scale(' + (1 + (1 - opacity) * 0.5) + ')';
+                
+                if (opacity <= 0) {
+                    clearInterval(animate);
+                    heart.remove();
+                }
+            }, 30);
+        }
 
         // Sample comments data
         // Function to get avatar path for a username
@@ -1107,7 +1322,15 @@
                 'KingFern': 'images/fern.png',
                 'IzzyQueen': 'images/izzy.png',
                 'TheFifthCharles': 'images/charles.png',
-                "GovDiego": 'images/diego.png'
+                "GovDiego": 'images/diego.png',
+                "no": 'images/no.png',
+                "elder": 'images/elder.png',
+                "DonaMari": 'images/m.png',
+                "PedroTheConqueror": 'images/pedro.png',
+                "FernMagellan": 'images/exfern.png',
+                "M.Luther": 'images/luther.png',
+                "Moc2ezuma": 'images/moctezuma.png',
+                "glich": "images/glich.png",
                 // Add more usernames and their corresponding avatar paths here
             };
             return avatars[username] || 'images/profilePic.png';
@@ -1115,33 +1338,64 @@
 
         const commentsData = {
             '1': [
-                { id: 1, username: 'GovDiego', avatar: getAvatarPath('GovDiego'), text: 'Buddy your not slick! 🧐 You were sent on a scouting mission, not to name yourself Captain General on the mission. I see those ships behind you... would be a shame if someone reported this to King Charles. 👑🚩 #Mutiny #Unfollowed #SeeYouInCourt', timestamp: 'Mar 15, 2h' },
-                { id: 2, username: 'IzzyQueen', avatar: getAvatarPath('IzzyQueen'), text: 'Incredible journey!', timestamp: 'Mar 15, 1h' },
-                { id: 3, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'What a brave expedition!', timestamp: 'Mar 14, 1d' }
+                { id: 1, username: 'GovDiego', avatar: getAvatarPath('GovDiego'), text: 'Buddy your not slick! 🧐 You were sent on a scouting mission, not to name yourself Captain General on the mission. This would be a shame if someone reported this to the King. 👑🚩 #Mutiny #Unfollowed #SeeYouInCourt', timestamp: 'Mar 15, 2h' },
+                { id: 2, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'Good job on landing, all great expiditions started with arival.🚢 You gotta lock in because this expidition decides whether you get famous or die a nobody! 🦾 #NewConquistador #LockIn', timestamp: 'Mar 9, 1h' },
+                { id: 3, username: 'PedroTheConqueror', avatar: getAvatarPath('PedroTheConqueror'), text: 'Commander, what an exellent landing!👌 I am honored to serve under you.🫡 Let the bloodshed begin!😏', timestamp: 'Mar 14, 1d' }
             ],
             '2': [
-                { id: 1, username: 'KingFern', avatar: getAvatarPath('KingFern'), text: 'Bold decision to burn the ships! 🔥', timestamp: 'Mar 14, 2d' }
+                { id: 1, username: 'FernMagellan', avatar: getAvatarPath('FernMagellan'), text: 'Bold decision to burn the ships!🔥 Even I am a bit surprised by this move. By destorying the only escape, you essentially forced loyalty upon your men.🧐 You probably knew that there would be long grusome battles ahead, therefore you needed to secure their commitment.😏 Smart move! #NoPlanB #NewTacticUnlocked', timestamp: 'Mar 14, 2d' },
+                { id: 2, username: "M.Luther", avatar: getAvatarPath("M.Luther"), text: "See chat! this a perfect example.☝️Just like he did, we too need to burn🔥 down our old ways through the reforma-", timestamp: "Mar 14, 2d" },
+                { id: 3, username: "ElCapitanCortes", avatar: getAvatarPath("ElCapitanCortes"), text: "I have no time for your nonsense lil'bro, this is my post stop using it as propaganda!🤦 Me and my crew have a empire to conquer!😤 #FocusOnTheMission #MyStory", timestamp: "Mar 14, 2d" }
             ],
             '3': [
-                { id: 1, username: 'IzzyQueen', avatar: getAvatarPath('IzzyQueen'), text: 'First contact! 👀', timestamp: 'Mar 13, 3d' }
+                { id: 1, username: 'TheElderXicotencatl', avatar: getAvatarPath('elder'), text: 'It has been a plesure to ally with you and your men Cortez 🫱🏻‍🫲🏾. We expect respect from you and so do your own men from us. Let us anihalate the Aztecs!🫡 #StrategicAlliance', timestamp: 'Mar 13, 3d' },
+                { id: 2, username: 'GovDiego', avatar: getAvatarPath('GovDiego'), text: 'Damnnn... I never expect you to actually survive and ally with native peoples 😒. Unfortunatly, even with all these renforments your still cooked against the Aztecs 🤣! I still hope you come back alive, so I can sue you for gold that is! 🤞 #UrCooked #Unfollowed', timestamp: 'Mar 14, 4d' },
+                { id: 3, username: 'DonaMari', avatar: getAvatarPath('DonaMari'), text: 'Cortez, thanks for giving a slave the chance to help!🤠 I will definetly support and translate for you in the future!😊 I can speak both Mayan and Nahuatl, so I hope i will come in clutch.🔊 #translatingTime #NativesHelp', timestamp: 'Mar 15, 5d' },
             ],
             '4': [
-                { id: 1, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'The architecture is stunning!', timestamp: 'Mar 12, 4d' }
+                { id: 1, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'This architecture is stunning, eroupe is nothing compared to this!', timestamp: 'Mar 12, 4d' },
+                { id: 2, username: "PedroTheConqueror", avatar: getAvatarPath("PedroTheConqueror"), text: 'Marching through the city had been a jaw dropping, lets set our sights on claiming this for spain! Even thorugh we came here to take this for spain, with all these people how do we intend to control them?', timestamp: 'Mar 15, 5d' },
+                { id: 3, username: "GovDiego", avatar: getAvatarPath("GovDiego"), text:"I assume Cortez would manipulate local leaders or overthrow the government if he intends on controlling the population, due to their sheer numbers an outright massacere would be impossible. Still, he has to do something and I hope he dies somewhere along the way.",  timestamp: 'Mar 15, 5d' },
+                { id: 4, username: "ElCapitanCortes", avatar: getAvatarPath("ElCapitanCortes"), text: "Ladies ladies, calm down I know exactly what to do, just wait and see!",  timestamp: 'Mar 15, 5d' }
             ],
             '5': [
-                { id: 1, username: 'KingFern', avatar: getAvatarPath('KingFern'), text: 'Tough times ahead', timestamp: 'Mar 11, 5d' }
+                { id: 1, username: 'DonaMari', avatar: getAvatarPath('DonaMari'), text: 'I am so sorry for the people of Tenochtitlan, I hope they can find a way to live through this, I know I will do my best to help them!😢 #PrayForTenochtitlan', timestamp: 'Mar 11, 5d' },
+                { id: 2, username: 'Moc2ezuma', avatar: getAvatarPath('Moc2ezuma'), text: 'Relax guys, everything will be alright! You should obey these men, besides they arent gonna mess up our civilization big time? Right?', timestamp: 'Mar 11, 5d' },
+                { id: 3, username: 'FernMagellan', avatar: getAvatarPath('FernMagellan'), text: 'Oh how you are wrong, Moc2ezuma. I saw this from like a kilometer away, these people might seem nice, but in their hearts they creave glory, riches and land. These traits make them dangerous! You fell directly into their trap, I am sure that Cortez had this a planed out', timestamp: 'Mar 11, 5d' },
+                { id: 4, username: 'T̶h̴e̶A̸z̶t̷e̶c̸P̶r̴e̸s̸s̸', avatar: getAvatarPath('glich'), text: 'Guys, how are you letting this happend! You guys march into the city only to burn gold, beat civilians, and loot! Your not here for friendship! Rather the tresury and the city! Even after you did all this you still have the audasity to chain our leader in his own palace! we need to revolt beacuse if the gods arent gonna help us who will!😡😭😤☠️ #Revolt #LongLiveAxtecs', timestamp: 'Mar 11, 5d' },
+                { id: 5, username: 'TheElderXicotencatl', avatar: getAvatarPath('elder'), text: 'What? How did this comment get here? I tought M̵̨̛̮̗̉̅͋̍̊̕ạ̵͓̙̣̑͘͜tt̵̛͔̀̂̓̃ȟ̸̨̜͈̞̄̀͗͂ę̶̬̙̼̰̱͆́̆̎ͅw̸͍̤̠̯̆͒̿͒̃̃͒  censored all people who were not team Spain!', timestamp: 'Mar 11, 5d' },
+                { id: 6, username: "PedroTheConqueror", avatar: getAvatarPath("PedroTheConqueror"), text: "Hackers getting to real. 😭🥀", timestamp: "Mar 12, 4d"},
+                { id: 7, username: "M̵̨̛̮̗̉̅͋̍̊̕ạ̵͓̙̣̑͘͜*̵̮̭̮͔͋tt̵̛͔̀̂̓̃ȟ̸̨̜͈̞̄̀͗͂ę̶̬̙̼̰̱͆́̆̎ͅw̸͍̤̠̯̆͒̿͒̃̃͒ ", avatar: getAvatarPath("no"), text: "Dont worry chat, hacker neutralized.", timestamp: "...2026..." }
             ],
             '6': [
-                { id: 1, username: 'IzzyQueen', avatar: getAvatarPath('IzzyQueen'), text: 'Night in the new world 🌙', timestamp: 'Mar 10, 6d' }
+                { id: 1, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'What a tragic event! How many casualties Cortez?', timestamp: 'Mar 10, 6d' },
+                { id: 2, username: 'ElCapitanCortes', avatar: getAvatarPath('ElCapitanCortes'), text: "It was a massacre, we lost around 600 of our finest men. #RespectForTheFallen #FirstBattleLost", timestamp: 'Mar 10, 6d' },
+                { id: 3, username: 'GovDiego', avatar: getAvatarPath('GovDiego'), text: "I hope you learned your lesson Cortez, you should have never underestimed the Aztecs!😒", timestamp: 'Mar 10, 6d' },
+                { id: 4, username: "TheElderXicotencatl", avatar: getAvatarPath("TheElderXicotencatl"), text: "Hey! he wasent the only one affected! I lost around 3,000 of my people in this battle!😤 #RespectForTheFallen", timestamp: 'Mar 10, 6d' },
+                { id: 5, username: "FernMagellan", avatar: getAvatarPath("FernMagellan"), text: "This is a sad day for everyone involved, but the bigger question to ask is why did this happen? I am sure there is a reason behind it.", timestamp: 'Mar 10, 6d' },
+                { id: 6, username: "PedroTheConqueror", avatar: getAvatarPath("PedroTheConqueror"), text: "Ummm.... it might of been me. While Cortez was away I kind of got carried away and started a massacre", timestamp: 'Mar 10, 6d' },
+                { id: 7, username: "GovDiego", avatar: getAvatarPath("GovDiego"), text: "Wait what? You started a massacre?😳 Why?😳 How?😳", timestamp: 'Mar 10, 6d' },
+                { id: 8, username: "PedroTheConqueror", avatar: getAvatarPath("PedroTheConqueror"), text: "I was just trying to secure the city for Spain, I thought it would be a good idea to attack the Aztecs while they were weak and disorganized after the revolt. I didnt expect it to get out of hand like that, I thought we would just scare them a bit and they would surrender. I guess I got a bit too carried away...😔", timestamp: 'Mar 10, 6d' },
+                { id: 9, username: "GovDiego", avatar: getAvatarPath("GovDiego"), text: "Wow... You really messed up big time Pedro!😒 I hope Cortez finds out about this and punishes you accordingly!🤞 #Mutiny #Unfollowed", timestamp: 'Mar 10, 6d' },
+                { id: 10, username: "ElCapitanCortes", avatar: getAvatarPath("ElCapitanCortes"), text: "Are you for real!!! Omg little bro ur cooked when u get to Spain, all those lives lost for a stupid mistake?!! Now you really messed up!! #Disappointed #PunishmentIncoming", timestamp: 'Mar 10, 6d' }
             ],
             '7': [
-                { id: 1, username: 'TheFifthCharles', avatar: getAvatarPath('TheFifthCharles'), text: 'Naval dominance! ⛵', timestamp: 'Mar 9, 1w' }
+                { id: 1, username: 'TheElderXicotencatl', avatar: getAvatarPath('TheElderXicotencatl'), text: 'Dammn... 13 ships built in one year, very impressive but my people complain to me about how bad their backs hurt! ⛵ #QuickBuilders', timestamp: 'Mar 9, 1w' },
+                { id: 2, username: "PedroTheConqueror", avatar: getAvatarPath("PedroTheConqueror"), text: "Bro, 80 days of fighting! All those dead bodys in the lake are starting to smell really bad! 😵‍💫 #KeepFighting", timestamp: 'Mar 9, 1w' },
+                { id: 3, username: "T̶h̴e̶A̸z̶t̷e̶c̸P̶r̴e̸s̸s̸", avatar: getAvatarPath("glich"), text: "This is a nightmare! More Aztecs are dying from smallpox than swords! Worst of all you cut of food and water, leaving our weak weaker! We need to fight, the Aztec empire will survive!!! #FightTilNight" },
+                { id: 4, username: "GovDiego", avatar: getAvatarPath("GovDiego"), text: "These hackers again? What has matthewgram become!", timestamp: 'Mar 9, 1w' },
+                { id: 5, username: "M̵̨̛̮̗̉̅͋̍̊̕ạ̵͓̙̣̑͘͜*̵̮̭̮͔͋tt̵̛͔̀̂̓̃ȟ̸̨̜͈̞̄̀͗͂ę̶̬̙̼̰̱͆́̆̎ͅw̸͍̤̠̯̆͒̿͒̃̃͒ ", avatar: getAvatarPath("no"), text: "On it, these hackers are good, so it might take a while.", timestamp: "...2026..." }
             ],
             '8': [
-                { id: 1, username: 'KingFern', avatar: getAvatarPath('KingFern'), text: 'The conquest begins...', timestamp: 'Mar 8, 1w' }
+                { id: 1, username: 'CharlesTheFifth', avatar: getAvatarPath('CharlesTheFifth'), text: 'Keep the gold, but send the money rolling. Good job on the land, though. 👑💰', timestamp: 'Mar 8, 1w' },
+                { id: 2, username: "GovDiego", avatar: getAvatarPath("GovDiego"), text: "I never thought I would say this but congrats on the victory Cortez, agaisnt all odds and my prayers you pulled it off, but I still want to make it clear I reported you and would take you to court for this! 👑 #SeeYouInCourt", timestamp: 'Mar 8, 1w' },
+                { id: 3, username: "PedroTheConqueror", avatar: getAvatarPath("PedroTheConqueror"), text: "We did it commander! We conquered the unconquerable! I am so proud to be part of this expidition!😎 #ConquistadorsForTheWin", timestamp: 'Mar 8, 1w' },
             ],
             '9': [
-                { id: 1, username: 'IzzyQueen', avatar: getAvatarPath('IzzyQueen'), text: 'Pure aura! ✨', timestamp: 'Mar 7, 2w' }
+                { id: 1, username: 'FernMagellan', avatar: getAvatarPath('FernMagellan'), text: 'Congrats on the appointment! I am sure you will do a great job governing New Spain!👑 #NewGovernor', timestamp: 'Mar 8, 1w' },
+                { id: 2, username: "DonaMari", avatar: getAvatarPath("DonaMari"), text: "Congrats on the appointment Cortez! I will continue to support you in your new role! Transltors are in demand you know! #NewGovernor #Translators", timestamp: 'Mar 8, 1w' },
+                { id: 3, username: "GovDiego", avatar: getAvatarPath("GovDiego"), text: "Congrats on the appointment Cortez, but I hope you dont let this go to your head! Just because your governer of mexico doesent mean your better than the governer of cuba!! #StayHumble #Cuba Better", timestamp: 'Mar 8, 1w' },
+                { id: 4, username: "M̵̨̛̮̗̉̅͋̍̊̕ạ̵͓̙̣̑͘͜*̵̮̭̮͔͋tt̵̛͔̀̂̓̃ȟ̸̨̜͈̞̄̀͗͂ę̶̬̙̼̰̱͆́̆̎ͅw̸͍̤̠̯̆͒̿͒̃̃͒ ", avatar: getAvatarPath("no"), text: "Congrats to Cortez on this amazing achievement! And thank you to you too, Mr. Penaso, for reading my work. I spent a lot more time than I should have, and I really hope you like the result.", timestamp: "...2026..." }
             ]
         };
 
@@ -1206,7 +1460,7 @@
             }
             
             commentsInput.focus();
-            scrollCommentsToBottom();
+            scrollCommentsToTop();
         }
 
         // Function to render a single comment
@@ -1227,32 +1481,12 @@
                     <div class="comment-text" id="comment-text-${postId}-${comment.id}">
                         ${escapeHtml(comment.text)}
                     </div>
-                    <div class="comment-actions">
-                        <button class="comment-action-btn edit-comment-btn" data-comment-id="${comment.id}">
-                            Edit
-                        </button>
-                        <button class="comment-action-btn delete-comment-btn" data-comment-id="${comment.id}">
-                            Delete
-                        </button>
-                    </div>
                 </div>
             `;
             
             commentsList.appendChild(commentDiv);
             
-            // Add event listeners for edit and delete
-            const editBtn = commentDiv.querySelector('.edit-comment-btn');
-            const deleteBtn = commentDiv.querySelector('.delete-comment-btn');
-            
-            editBtn.addEventListener('click', function() {
-                editComment(comment.id, comment.text, postId);
-            });
-            
-            deleteBtn.addEventListener('click', function() {
-                deleteComment(comment.id, postId);
-            });
-            
-            scrollCommentsToBottom();
+            scrollCommentsToTop();
         }
 
         // Function to add a new comment
@@ -1267,8 +1501,8 @@
             
             const newComment = {
                 id: newId,
-                username: 'ElCapitanCortes',
-                avatar: getAvatarPath('ElCapitanCortes'),
+                username: 'MrAPenaso',
+                avatar: getAvatarPath('no'),
                 text: text,
                 timestamp: 'now'
             };
@@ -1357,9 +1591,9 @@
             }
         }
 
-        // Function to scroll comments to bottom
-        function scrollCommentsToBottom() {
-            commentsList.scrollTop = commentsList.scrollHeight;
+        // Function to scroll comments to top
+        function scrollCommentsToTop() {
+            commentsList.scrollTop = 0;
         }
 
         // Function to escape HTML
@@ -1373,7 +1607,66 @@
             };
             return text.replace(/[&<>"']/g, m => map[m]);
         }
+
+        // Image Expansion Modal Functionality
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const imageModalClose = document.getElementById('imageModalClose');
+
+        // Function to open image modal
+        function openImageModal(imageSrc) {
+            modalImage.src = imageSrc;
+            imageModal.classList.add('active');
+        }
+
+        // Function to close image modal
+        function closeImageModal() {
+            imageModal.classList.remove('active');
+        }
+
+        // Add click listeners to all images
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all images that should be expandable (avatar images only, not post images)
+            const expandableImages = document.querySelectorAll(
+                '.post-avatar img, .comment-avatar img'
+            );
+
+            expandableImages.forEach(function(img) {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event bubbling
+                    openImageModal(this.src);
+                });
+            });
+
+            // Close modal when X button is clicked
+            imageModalClose.addEventListener('click', closeImageModal);
+
+            // Close modal when clicking on the background
+            imageModal.addEventListener('click', function(e) {
+                if (e.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeImageModal();
+                }
+            });
+        });
     </script>
+
+    <!-- Image Expansion Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <button class="image-modal-close" id="imageModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modalImage" src="" alt="Expanded image">
+        </div>
+    </div>
 
 </body>
 </html>

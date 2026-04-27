@@ -569,6 +569,63 @@
                 height: 90vh;
             }
         }
+
+        /* Image Expansion Modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal.active {
+            display: flex;
+        }
+
+        .image-modal-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .image-modal img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+        }
+
+        .image-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.3);
+            border: none;
+            color: white;
+            font-size: 32px;
+            cursor: pointer;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.2s ease;
+            z-index: 2001;
+        }
+
+        .image-modal-close:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -597,15 +654,15 @@
             <!-- Stats Section -->
             <div class="profile-stats">
                 <div class="stat">
-                    <span class="stat-number">317</span>
+                    <span class="stat-number">9</span>
                     <span class="stat-label">posts</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">67</span>
+                    <span class="stat-number">783</span>
                     <span class="stat-label">followers</span>
                 </div>
                 <div class="stat">
-                    <span class="stat-number">689</span>
+                    <span class="stat-number">32</span>
                     <span class="stat-label">following</span>
                 </div>
             </div>
@@ -616,7 +673,12 @@
 
         <!-- Bio Section -->
         <div class="bio-section">
-            <div class="bio-text">Hi chat im Hernan Cortez</div>
+            <div class="bio-text">Rouge | Explorer | Captain-General
+<br>- From Old to New World! 🌎
+<br>- I like burning ships. 🔥 #NoPlanB 
+<br>- Totally expanding the the Faith ✝️
+<br>- Seeking the City of Gold, what else would we? 😏
+<br>- Officialy Translated by DonaMari! 🔊</div>
 
             <!-- Action Buttons -->
             <div class="profile-actions">
@@ -633,16 +695,16 @@
             <div class="followed-by-section">
                 <div class="followed-by-avatars">
                     <div class="small-avatar">
-                        <img src="images/fern.png" alt="user1" loading="lazy">
+                        <img src="images/m.png" alt="user1" loading="lazy">
                     </div>
                     <div class="small-avatar">
-                        <img src="images/izzy.png" alt="user2" loading="lazy">
+                        <img src="images/pedro.png" alt="user2" loading="lazy">
                     </div>
                     <div class="small-avatar">
-                        <img src="images/charles.png" alt="user3" loading="lazy">
+                        <img src="images/elder.png" alt="user3" loading="lazy">
                     </div>
                 </div>
-                <span class="followed-by-description">Followed by KingFern, IzzyQueen, TheFifthCharles and 15 others</span>
+                <span class="followed-by-description">Followed by DonaMari, PedroTheConquerer, TheElderXicotencatl and 780 others</span>
             </div>
         </div>
     </div>
@@ -848,6 +910,55 @@
         // Disable send button initially
         chatSendBtn.disabled = true;
 
+        // Image Expansion Modal Functionality
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const imageModalClose = document.getElementById('imageModalClose');
+
+        // Function to open image modal
+        function openImageModal(imageSrc) {
+            modalImage.src = imageSrc;
+            imageModal.classList.add('active');
+        }
+
+        // Function to close image modal
+        function closeImageModal() {
+            imageModal.classList.remove('active');
+        }
+
+        // Add click listeners to all images
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all images that should be expandable (excluding post grid images and post feed images to preserve navigation)
+            const expandableImages = document.querySelectorAll(
+                '.profile-avatar img, .small-avatar img'
+            );
+
+            expandableImages.forEach(function(img) {
+                img.style.cursor = 'pointer';
+                img.addEventListener('click', function(e) {
+                    e.stopPropagation(); // Prevent event bubbling
+                    openImageModal(this.src);
+                });
+            });
+
+            // Close modal when X button is clicked
+            imageModalClose.addEventListener('click', closeImageModal);
+
+            // Close modal when clicking on the background
+            imageModal.addEventListener('click', function(e) {
+                if (e.target === imageModal) {
+                    closeImageModal();
+                }
+            });
+
+            // Close modal on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    closeImageModal();
+                }
+            });
+        });
+
         // Add click event listeners to all post items
         document.addEventListener('DOMContentLoaded', function() {
             const postItems = document.querySelectorAll('.post-item');
@@ -860,6 +971,16 @@
             });
         });
     </script>
+
+    <!-- Image Expansion Modal -->
+    <div class="image-modal" id="imageModal">
+        <div class="image-modal-content">
+            <button class="image-modal-close" id="imageModalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modalImage" src="" alt="Expanded image">
+        </div>
+    </div>
 
 </body>
 </html>
